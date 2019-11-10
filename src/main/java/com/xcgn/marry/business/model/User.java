@@ -1,5 +1,6 @@
 package com.xcgn.marry.business.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * 
  * @date 2019-11-10
  */
-public class User {
+public class User implements Serializable {
     /**
      * ID
      */

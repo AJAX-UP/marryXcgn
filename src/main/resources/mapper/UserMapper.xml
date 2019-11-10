@@ -225,6 +225,6 @@
         select
         <include refid="Base_Column_List" />
         from user
-        where user_name = #{userName,jdbcType=VARCHAR}
+        where username = #{userName,jdbcType=VARCHAR}
     </select>
 </mapper>

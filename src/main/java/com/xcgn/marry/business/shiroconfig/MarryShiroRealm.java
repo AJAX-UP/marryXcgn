@@ -7,8 +7,11 @@ import com.xcgn.marry.business.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
 
@@ -40,18 +43,30 @@ public class MarryShiroRealm extends AuthorizingRealm {
 //        System.out.println(token.getCredentials());
         //通过username从数据库中查找 User对象，如果找到，没找到.
         //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
-        User User = userService.findByUsername(username);
+        User user = userService.findByUsername(username);
 //        System.out.println("----->>User="+User);
-        if (User == null) {
+        if (user == null) {
             return null;
         }
-
+        ByteSource salt = ByteSource.Util.bytes(username);
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                User, //用户名
-                User.getPassword(), //密码
+                user, //用户名
+                user.getPassword(), //密码
+                salt,
                 getName()  //realm name
         );
+//        authenticationInfo.getCredentialsSalt(ByteSource.Util.bytes(username));
+//        ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
+//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUsername(),user.getPassword(),getName());
+//        info.setCredentialsSalt(credentialsSalt);
+
         return authenticationInfo;
+    }
+
+    public static void main(String[] args) {
+        ByteSource salt = ByteSource.Util.bytes("admin");
+       String result = new Md5Hash("123",salt,2).toString();
+       System.out.println(result);
     }
 
 }

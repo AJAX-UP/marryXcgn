@@ -26,8 +26,7 @@ public class LoginController {
      * @return
      */
     @ApiOperation(value="测试接口api", notes="根据cid获取客服信息，this is test api")
-    @ApiImplicitParam(name = "cid", value = "客户id", required = true, dataType = "String")
-    @PostMapping("/getCenter")
+    @PostMapping("/ajaxLogin")
     public String ajaxLogin(User userInfo) {
         JSONObject jsonObject = new JSONObject();
         Subject subject = SecurityUtils.getSubject();
