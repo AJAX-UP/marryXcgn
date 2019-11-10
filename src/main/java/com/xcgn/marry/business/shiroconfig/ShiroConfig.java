@@ -113,8 +113,8 @@ public class ShiroConfig {
     public RedisManager redisManager() {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
-//        redisManager.setPort(port);
-//        redisManager.setExpire(1800);// 配置过期时间
+        redisManager.setPort(port);
+        //redisManager.setExpire(1800);// 配置过期时间
         redisManager.setTimeout(timeout);
         return redisManager;
     }
