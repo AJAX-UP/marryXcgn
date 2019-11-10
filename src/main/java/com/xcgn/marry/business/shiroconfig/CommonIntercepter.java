@@ -1,19 +1,10 @@
 package com.xcgn.marry.business.shiroconfig;
 
-import com.alibaba.fastjson.JSON;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.mybatis.logging.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 
 @Component
 public class CommonIntercepter implements HandlerInterceptor {
