@@ -65,7 +65,7 @@ public class MarryShiroRealm extends AuthorizingRealm {
 
     public static void main(String[] args) {
         ByteSource salt = ByteSource.Util.bytes("admin");
-       String result = new Md5Hash("123",salt,2).toString();
+       String result = new Md5Hash("123456",salt,2).toString();
        System.out.println(result);
     }
 

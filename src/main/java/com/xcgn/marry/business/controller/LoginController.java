@@ -11,6 +11,8 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @Api("客服接口")
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
 
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 登录方法
      * @param userInfo
@@ -30,6 +32,7 @@ public class LoginController {
     public String ajaxLogin(User userInfo) {
         JSONObject jsonObject = new JSONObject();
         Subject subject = SecurityUtils.getSubject();
+        logger.error("当前为日志测试");
         UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
         try {
             subject.login(token);
@@ -45,5 +48,12 @@ public class LoginController {
             e.printStackTrace();
         }
         return jsonObject.toString();
+    }
+
+    @ApiOperation(value="测试接口", notes="获取客服信息")
+    @PostMapping("/selectUser")
+    public String selectUser() {
+        System.out.println("123");
+        return "123";
     }
 }
