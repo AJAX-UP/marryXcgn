@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 用户表
  * 
- * @author wcyong
+ * @author ajaxgo
  * 
  * @date 2019-11-10
  */

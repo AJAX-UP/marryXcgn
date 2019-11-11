@@ -3,7 +3,7 @@ package com.xcgn.marry.business.model;
 /**
  * 
  * 
- * @author wcyong
+ * @author ajaxgo
  * 
  * @date 2019-11-10
  */

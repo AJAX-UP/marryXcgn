@@ -17,7 +17,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Created by Administrator on 2017/12/11.
+ * Created by ajaxgo on 2019/11/10.
  */
 @Configuration
 public class ShiroConfig {
@@ -75,6 +75,7 @@ public class ShiroConfig {
         hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
         return hashedCredentialsMatcher;
     }
+
 
     @Bean
     public MarryShiroRealm myShiroRealm() {
