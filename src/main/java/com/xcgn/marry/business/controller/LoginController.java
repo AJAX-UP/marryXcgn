@@ -36,6 +36,9 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
         try {
             subject.login(token);
+
+            Subject sub = SecurityUtils.getSubject();
+            Object obj = sub.getPrincipal();
             jsonObject.put("token", subject.getSession().getId());
             jsonObject.put("msg", "登录成功");
         } catch (IncorrectCredentialsException e) {
