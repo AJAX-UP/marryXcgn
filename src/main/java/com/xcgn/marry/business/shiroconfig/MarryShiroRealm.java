@@ -18,6 +18,15 @@ public class MarryShiroRealm extends AuthorizingRealm {
     @Resource
     private UserService userService;
 
+    /**
+     * description: 授权 
+     * version: 1.0 
+     * date: 2019/11/12 10:12 
+     * author: ajaxgo
+     * 
+     * @param principals
+     * @return org.apache.shiro.authz.AuthorizationInfo
+     */ 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 //        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
@@ -32,18 +41,21 @@ public class MarryShiroRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
-    /*主要是用来进行身份认证的，也就是说验证用户输入的账号和密码是否正确。*/
+    /**
+     * description: 验证身份(鉴权)
+     * version: 1.0 
+     * date: 2019/11/12 10:13 
+     * author: ajaxgo
+     * 
+     * @param token
+     * @return org.apache.shiro.authc.AuthenticationInfo
+     */ 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
-//        System.out.println("MyShiroRealm.doGetAuthenticationInfo()");
         //获取用户的输入的账号.
         String username = (String) token.getPrincipal();
-//        System.out.println(token.getCredentials());
-        //通过username从数据库中查找 User对象，如果找到，没找到.
-        //实际项目中，这里可以根据实际情况做缓存，如果不做，Shiro自己也是有时间间隔机制，2分钟内不会重复执行该方法
         User user = userService.findByUsername(username);
-//        System.out.println("----->>User="+User);
         if (user == null) {
             return null;
         }
@@ -54,11 +66,6 @@ public class MarryShiroRealm extends AuthorizingRealm {
                 salt,
                 getName()  //realm name
         );
-//        authenticationInfo.getCredentialsSalt(ByteSource.Util.bytes(username));
-//        ByteSource credentialsSalt = ByteSource.Util.bytes(user.getEmail());
-//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user.getUsername(),user.getPassword(),getName());
-//        info.setCredentialsSalt(credentialsSalt);
-
         return authenticationInfo;
     }
 

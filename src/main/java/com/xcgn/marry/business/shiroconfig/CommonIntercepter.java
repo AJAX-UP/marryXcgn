@@ -5,8 +5,15 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-@Component
+/**
+ * description: 添加拦截器解决跨域
+ * version: 1.0 
+ * date: 2019/11/12 10:50 
+ * author: ajaxgo
+ *
+ * @return 
+ */ 
+//@Component
 public class CommonIntercepter implements HandlerInterceptor {
 
 

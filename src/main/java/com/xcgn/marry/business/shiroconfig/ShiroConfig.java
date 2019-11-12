@@ -10,8 +10,10 @@ import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,12 +33,19 @@ public class ShiroConfig {
     @Value("${spring.redis.password}")
     private String password;
 
-    @Bean
+    /**
+     * description: 过滤设置
+     * version: 1.0 
+     * date: 2019/11/12 10:18 
+     * author: ajaxgo
+     * 
+     * @param securityManager
+     * @return org.apache.shiro.spring.web.ShiroFilterFactoryBean
+     */ 
+    @Bean("shiroFilter")
     public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-        System.out.println("ShiroConfiguration.shirFilter()");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //注意过滤器配置顺序 不能颠倒
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
@@ -52,22 +61,20 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/swagger-resources/configuration/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/unauth");
-        // 登录成功后要跳转的链接
-//        shiroFilterFactoryBean.setSuccessUrl("/index");
-        //未授权界面;
-//        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+        //shiroFilterFactoryBean.setLoginUrl("/unauth");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
 
     /**
-     * 凭证匹配器
-     * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
-     * ）
-     *
-     * @return
-     */
+     * description: 凭证匹配器
+     * version: 1.0 
+     * date: 2019/11/12 10:20 
+     * author: ajaxgo
+     * 
+     * @param 
+     * @return org.apache.shiro.authc.credential.HashedCredentialsMatcher
+     */ 
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -167,5 +174,16 @@ public class ShiroConfig {
     @Bean(name = "exceptionHandler")
     public HandlerExceptionResolver handlerExceptionResolver() {
         return new MarryExceptionHandler();
+    }
+
+
+    @Bean
+    public FilterRegistrationBean delegatingFilterProxy(){
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        DelegatingFilterProxy proxy = new DelegatingFilterProxy();
+        proxy.setTargetFilterLifecycle(true);
+        proxy.setTargetBeanName("shiroFilter");
+        filterRegistrationBean.setFilter(proxy);
+        return filterRegistrationBean;
     }
 }
