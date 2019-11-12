@@ -1,5 +1,7 @@
 package com.xcgn.marry.business.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * 
@@ -7,7 +9,7 @@ package com.xcgn.marry.business.model;
  * 
  * @date 2019-11-10
  */
-public class RolePermission {
+public class RolePermission implements Serializable {
     private Integer id;
 
     /**

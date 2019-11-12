@@ -219,9 +219,60 @@
     </update>
 
 
+    <resultMap id="UserResultMap"   type="com.xcgn.marry.business.model.User">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="avatar_id" property="avatarId" jdbcType="INTEGER" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="enabled" property="enabled" jdbcType="INTEGER" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="last_password_reset_time" property="lastPasswordResetTime" jdbcType="TIMESTAMP" />
+        <result column="birthday" property="birthday" jdbcType="DATE" />
+        <result column="provice_id" property="proviceId" jdbcType="INTEGER" />
+        <result column="city_id" property="cityId" jdbcType="INTEGER" />
+        <result column="gender" property="gender" jdbcType="BIT" />
+        <result column="personalized_signature" property="personalizedSignature" jdbcType="VARCHAR" />
+        <result column="user_type" property="userType" jdbcType="INTEGER" />
+        <collection property="roleList" ofType="com.xcgn.marry.business.model.Role" select="selectRole" column="id"></collection>
+    </resultMap>
 
 
-    <select id="findByUesrName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    <resultMap id="RoleResultMap" type="com.xcgn.marry.business.model.Role" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <collection property="permissions" column="id" select="selectPermissions" ofType="com.xcgn.marry.business.model.Permission"></collection>
+    </resultMap>
+
+    <resultMap id="PermissionsResultMap"  type="com.xcgn.marry.business.model.Permission" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="perms" property="perms" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="selectRole" resultMap="RoleResultMap" parameterType="java.lang.Integer" >
+        select b.* from user_role a left join role b on a.role_id=b.id where a.user_id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectPermissions" resultMap="PermissionsResultMap" parameterType="java.lang.Integer" >
+         select b.* from role_permission a left join permission b on a.permission_id=b.id where a.role_id=#{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="findByUesrName" resultMap="UserResultMap" parameterType="java.lang.String" >
         select
         <include refid="Base_Column_List" />
         from user

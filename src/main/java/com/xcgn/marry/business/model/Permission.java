@@ -1,5 +1,6 @@
 package com.xcgn.marry.business.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * 
  * @date 2019-11-10
  */
-public class Permission {
+public class Permission implements Serializable {
     /**
      * 权限id
      */
