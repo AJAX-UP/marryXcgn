@@ -26,7 +26,7 @@ public class WxController {
      * @throws
      * @title weChatLogin
      * @description 微信授权登录
-     * @author Kuangzc
+     * @author ajaxgo
      * @updateTime 2019-9-12 16:00:51
      */
     @ApiOperation(value = "微信授权登录")

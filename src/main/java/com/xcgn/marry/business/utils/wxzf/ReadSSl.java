@@ -11,7 +11,7 @@ import java.security.KeyStore;
 
 /**
  * 读取证书
- * @author zzb
+ * @author ajaxgo
  *
  */
 @SuppressWarnings("deprecation")
@@ -29,7 +29,7 @@ public class ReadSSl {
 		return readSSL;
 	}
 	/**
-	 *  读取 apiclient_cert.p12 证书
+	 *  读取证书
 	 *  WeChatConfig.MCHID 为证书密码
 	 * @return
 	 * @throws Exception
