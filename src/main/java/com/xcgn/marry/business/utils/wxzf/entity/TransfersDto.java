@@ -38,7 +38,7 @@ public class TransfersDto
     private String appkey;
 
     // 发起者IP地址+该IP可传用户端或者服务端的IP。
-    private String spbill_create_ip = "39.100.108.120";
+    private String spbill_create_ip = "39.98.122.125";
 
     public String getMch_appid()
     {
