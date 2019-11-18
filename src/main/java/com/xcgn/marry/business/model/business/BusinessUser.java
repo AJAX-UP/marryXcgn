@@ -1,5 +1,7 @@
 package com.xcgn.marry.business.model.business;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class BusinessUser {
@@ -19,8 +21,10 @@ public class BusinessUser {
 
     private String avatar;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date uodateTime;
 
     public Integer getId() {

@@ -49,4 +49,24 @@ public class UserServiceImpl implements UserService {
 
         }
     }
+
+    /**
+     * description: 获取用户基本信息
+     * version: 1.0 
+     * date: 2019/11/18 17:09 
+     * author: ajaxgo
+     * 
+     * @param userId
+     * @return org.springframework.http.ResponseEntity
+     */ 
+    @Override
+    public ResponseEntity selectUser(Integer userId) {
+        try {
+            BusinessUser bUser=businessUserMapper.selectByPrimaryKey(userId);
+            return  new ResponseEntity<>(bUser, HttpStatus.OK);
+        }catch (Exception e){
+           logger.error(e.getMessage());
+            return  new ResponseEntity<>("未知错误", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

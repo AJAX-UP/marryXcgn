@@ -28,4 +28,12 @@ public class UserController {
     protected ResponseEntity initUser() {
         return businessUserService.initUser();
     }
+
+    @ApiOperation(value = "获取用户基本信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query",example = "-1", name = "userId", value = "userId", required = true, dataType = "Int")})
+    @PostMapping("/selectUser")
+    protected ResponseEntity selectUser(@RequestParam Integer userId) {
+        return businessUserService.selectUser(userId);
+    }
 }
