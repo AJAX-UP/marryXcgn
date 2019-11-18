@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * create by ajaxgo on 2019/11/12
  **/
-@Api("微信登录接口")
+@Api(tags = {"微信相关接口"})
 @RestController
 @RequestMapping("app/wxlogin")
 public class WxController {

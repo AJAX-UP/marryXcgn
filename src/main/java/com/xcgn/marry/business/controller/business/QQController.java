@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * create by ajaxgo on 2019/11/18
  **/
-@Api("扣扣登录接口")
+@Api(tags ="qq相关接口")
 @RestController
 @RequestMapping("app/qqlogin")
 public class QQController {
