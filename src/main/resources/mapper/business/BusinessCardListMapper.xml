@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xcgn.marry.business.dao.business.BusinessCardListMapper" >
+  <resultMap id="BaseResultMap"  type="com.xcgn.marry.business.model.business.BusinessCardList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="winning_picture" property="winningPicture" jdbcType="VARCHAR" />
+    <result column="max_money" property="maxMoney" jdbcType="DOUBLE" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    id, avatar, sort, winning_picture, max_money
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business_card_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business_card_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.xcgn.marry.business.model.business.BusinessCardList" >
+    insert into business_card_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="avatar != null" >
+        avatar,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="winningPicture != null" >
+        winning_picture,
+      </if>
+      <if test="maxMoney != null" >
+        max_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="winningPicture != null" >
+        #{winningPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="maxMoney != null" >
+        #{maxMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.xcgn.marry.business.model.business.BusinessCardList" >
+    update business_card_list
+    <set >
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="winningPicture != null" >
+        winning_picture = #{winningPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="maxMoney != null" >
+        max_money = #{maxMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

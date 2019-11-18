@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xcgn.marry.business.dao.business.BusinessLuckyDrawMapper" >
+  <resultMap id="BaseResultMap" type="com.xcgn.marry.business.model.business.BusinessLuckyDraw" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cash_bean" property="cashBean" jdbcType="INTEGER" />
+    <result column="cash_bean_double" property="cashBeanDouble" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cash_bean, cash_bean_double, user_id, number, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from business_lucky_draw
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business_lucky_draw
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.xcgn.marry.business.model.business.BusinessLuckyDraw" >
+    insert into business_lucky_draw
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cashBean != null" >
+        cash_bean,
+      </if>
+      <if test="cashBeanDouble != null" >
+        cash_bean_double,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cashBean != null" >
+        #{cashBean,jdbcType=INTEGER},
+      </if>
+      <if test="cashBeanDouble != null" >
+        #{cashBeanDouble,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.xcgn.marry.business.model.business.BusinessLuckyDraw" >
+    update business_lucky_draw
+    <set >
+      <if test="cashBean != null" >
+        cash_bean = #{cashBean,jdbcType=INTEGER},
+      </if>
+      <if test="cashBeanDouble != null" >
+        cash_bean_double = #{cashBeanDouble,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

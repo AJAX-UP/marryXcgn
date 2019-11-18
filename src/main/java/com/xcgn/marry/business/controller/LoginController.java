@@ -56,6 +56,7 @@ public class LoginController {
         return jsonObject.toString();
     }
 
+    //微信付款
     @ApiOperation(value="测试接口", notes="获取客服信息")
     @PostMapping("/selectUser")
     public String selectUser() {
