@@ -22,7 +22,7 @@ public class QQController {
 
     @ApiOperation(value = "扣扣登录接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "userId", value = "用户的Id", required = true, dataType = "Int"),
+            @ApiImplicitParam(paramType = "query", name = "userId",example = "-1", value = "用户的Id", required = true, dataType = "Int"),
             @ApiImplicitParam(paramType = "query", name = "openId", value = "QQ的openId", required = true, dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "nickname", value = "昵称", required = true, dataType = "String"),
             @ApiImplicitParam(paramType = "query", name = "headImgUrl", value = "头像", required = true, dataType = "String")

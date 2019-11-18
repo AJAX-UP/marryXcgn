@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * create by ajaxgo on 2019/11/12
@@ -31,10 +28,10 @@ public class WxController {
      */
     @ApiOperation(value = "微信授权登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "userId", value = "userId", required = true, dataType = "Int"),
+            @ApiImplicitParam(paramType = "query",example = "-1", name = "userId", value = "userId", required = true, dataType = "Int"),
             @ApiImplicitParam(paramType = "query", name = "code", value = "用户换取access_token的code，仅在ErrCode为0时有效", required = true, dataType = "String")
     })
-    @GetMapping("/weChatLogin")
+    @PostMapping("/weChatLogin")
     protected ResponseEntity weChatLogin(@RequestParam Integer userId, @RequestParam String code) {
         return wxLoginService.weChatLogin(userId,code);
     }
@@ -52,10 +49,10 @@ public class WxController {
     @ApiOperation(value = "绑定微信")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "code", value = "用户换取access_token的code，仅在ErrCode为0时有效", required = true, dataType = "String"),
-            @ApiImplicitParam(paramType = "query", name = "userId", value = "需要绑定的用户", required = true, dataType = "Int")
+            @ApiImplicitParam(paramType = "query",example = "-1", name = "userId", value = "需要绑定的用户", required = true, dataType = "Int")
 
     })
-    @GetMapping("/bindWeChat")
+    @PostMapping("/bindWeChat")
     protected ResponseEntity bindWeChat(@RequestParam String code,@RequestParam Integer userId) {
         return wxLoginService.bindWeChat(code,userId);
     }

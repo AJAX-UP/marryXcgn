@@ -43,7 +43,7 @@ public class PhoneController {
     @ApiOperation("app手机登录")
     @PostMapping(value = "/phoneLogin")
     public ResponseEntity phoneLogin(@RequestParam @ApiParam(name = "phone", value = "手机号") String phone,
-                                     @RequestParam @ApiParam(name = "userId", value = "用户Id") Integer userId,
+                                     @RequestParam @ApiParam(name = "userId", value = "用户Id",example = "-1") Integer userId,
                                    @RequestParam @ApiParam(name = "code", value = "验证码") String code,
                                    HttpServletRequest request)  {
         Map<String, Object> map = new HashMap<>();

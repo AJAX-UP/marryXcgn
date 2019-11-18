@@ -30,7 +30,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insertSelective" parameterType="com.xcgn.marry.business.model.business.BusinessUser" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.xcgn.marry.business.model.business.BusinessUser" >
     insert into business_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -25,36 +25,31 @@ public class LoginController {
 
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    /**
-     * 登录方法
-     * @param userInfo
-     * @return
-     */
-    @ApiOperation(value="测试接口api", notes="根据cid获取客服信息，this is test api")
-    @PostMapping("/ajaxLogin")
-    public String ajaxLogin(User userInfo) {
-        JSONObject jsonObject = new JSONObject();
-        Subject subject = SecurityUtils.getSubject();
-        logger.error("当前为日志测试");
-        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
-        try {
-            subject.login(token);
-
-            Subject sub = SecurityUtils.getSubject();
-            Object obj = sub.getPrincipal();
-            jsonObject.put("token", subject.getSession().getId());
-            jsonObject.put("msg", "登录成功");
-        } catch (IncorrectCredentialsException e) {
-            jsonObject.put("msg", "密码错误");
-        } catch (LockedAccountException e) {
-            jsonObject.put("msg", "登录失败，该用户已被冻结");
-        } catch (AuthenticationException e) {
-            jsonObject.put("msg", "该用户不存在");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return jsonObject.toString();
-    }
+//    @ApiOperation(value="测试接口api", notes="根据cid获取客服信息，this is test api")
+//    @PostMapping("/ajaxLogin")
+//    public String ajaxLogin(User userInfo) {
+//        JSONObject jsonObject = new JSONObject();
+//        Subject subject = SecurityUtils.getSubject();
+//        logger.error("当前为日志测试");
+//        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
+//        try {
+//            subject.login(token);
+//
+//            Subject sub = SecurityUtils.getSubject();
+//            Object obj = sub.getPrincipal();
+//            jsonObject.put("token", subject.getSession().getId());
+//            jsonObject.put("msg", "登录成功");
+//        } catch (IncorrectCredentialsException e) {
+//            jsonObject.put("msg", "密码错误");
+//        } catch (LockedAccountException e) {
+//            jsonObject.put("msg", "登录失败，该用户已被冻结");
+//        } catch (AuthenticationException e) {
+//            jsonObject.put("msg", "该用户不存在");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return jsonObject.toString();
+//    }
 
     //微信付款
     @ApiOperation(value="测试接口", notes="获取客服信息")
