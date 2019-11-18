@@ -86,7 +86,7 @@ public class WxLoginServiceImpl implements WxLoginService {
            if(openid!=null){
                BusinessUser updateUser=new BusinessUser();
                updateUser.setId(userId);
-               updateUser.setUodateTime(new Date());
+               updateUser.setUpdateTime(new Date());
                updateUser.setWxOpenId(openid);
                int i=businessUserMapper.updateByPrimaryKeySelective(updateUser);
                if(i!=0){

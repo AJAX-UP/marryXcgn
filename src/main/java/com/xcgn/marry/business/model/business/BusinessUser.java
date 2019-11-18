@@ -25,7 +25,7 @@ public class BusinessUser {
     private Date createTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date uodateTime;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -99,11 +99,11 @@ public class BusinessUser {
         this.createTime = createTime;
     }
 
-    public Date getUodateTime() {
-        return uodateTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUodateTime(Date uodateTime) {
-        this.uodateTime = uodateTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }
