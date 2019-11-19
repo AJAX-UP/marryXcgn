@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class WechatpayUtil
+public  class WechatpayUtil
 {
     private static final Log LOG = LogFactory.getLog(WechatpayUtil.class);
     
