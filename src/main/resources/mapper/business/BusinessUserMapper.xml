@@ -138,4 +138,8 @@
     from business_user
     where wx_open_id = #{wxOpenId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectUserRank" resultMap="BaseResultMap" >
+    select * from business_user t ORDER BY  t.cash desc,t.cash_beans desc
+  </select>
 </mapper>

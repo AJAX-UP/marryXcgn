@@ -10,4 +10,6 @@ public interface UserService {
     ResponseEntity initUser();
 
     ResponseEntity selectUser(Integer userId);
+
+    ResponseEntity selectUserRank();
 }

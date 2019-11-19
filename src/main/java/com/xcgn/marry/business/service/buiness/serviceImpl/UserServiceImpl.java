@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * create by ajaxgo on 2019/11/18
@@ -68,5 +69,26 @@ public class UserServiceImpl implements UserService {
            logger.error(e.getMessage());
             return  new ResponseEntity<>("未知错误", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * description: 获取用户排行榜
+     * version: 1.0
+     * date: 2019/11/19 14:35
+     * author: ajaxgo
+     *
+     * @param
+     * @return org.springframework.http.ResponseEntity
+     */
+    @Override
+    public ResponseEntity selectUserRank() {
+        try {
+            List<BusinessUser> list=businessUserMapper.selectUserRank();
+            return new ResponseEntity(list,HttpStatus.OK);
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return new ResponseEntity("未知错误",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }

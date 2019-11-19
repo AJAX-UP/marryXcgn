@@ -34,6 +34,14 @@ public class UserController {
             @ApiImplicitParam(paramType = "query",example = "-1", name = "userId", value = "userId", required = true, dataType = "Int")})
     @PostMapping("/selectUser")
     protected ResponseEntity selectUser(@RequestParam Integer userId) {
+
         return businessUserService.selectUser(userId);
     }
+
+    @ApiOperation(value = "获取用户排行榜")
+    @PostMapping("/selectUserRank")
+    protected ResponseEntity selectUserRank() {
+        return businessUserService.selectUserRank();
+    }
+
 }
