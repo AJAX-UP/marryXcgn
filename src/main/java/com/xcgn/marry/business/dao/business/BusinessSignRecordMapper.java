@@ -2,9 +2,11 @@ package com.xcgn.marry.business.dao.business;
 
 
 import com.xcgn.marry.business.model.business.BusinessSignRecord;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 
+@Mapper
 public interface BusinessSignRecordMapper {
 
     int deleteByPrimaryKey(Integer id);

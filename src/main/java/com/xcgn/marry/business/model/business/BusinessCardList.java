@@ -1,5 +1,7 @@
 package com.xcgn.marry.business.model.business;
 
+import java.util.List;
+
 public class BusinessCardList {
     private Integer id;
 
@@ -10,6 +12,17 @@ public class BusinessCardList {
     private String winningPicture;
 
     private Double maxMoney;
+
+    private List<BusinessWrongPicture> wrongPictures;
+
+
+    public List<BusinessWrongPicture> getWrongPictures() {
+        return wrongPictures;
+    }
+
+    public void setWrongPictures(List<BusinessWrongPicture> wrongPictures) {
+        this.wrongPictures = wrongPictures;
+    }
 
     public Integer getId() {
         return id;

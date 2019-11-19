@@ -81,4 +81,42 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <resultMap id="CardListBaseResultMap"  type="com.xcgn.marry.business.model.business.BusinessCardList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="winning_picture" property="winningPicture" jdbcType="VARCHAR" />
+    <result column="max_money" property="maxMoney" jdbcType="DOUBLE" />
+    <collection property="wrongPictures" column="id" ofType="com.xcgn.marry.business.model.business.BusinessWrongPicture" select="selectPicture"></collection>
+  </resultMap>
+  <resultMap id="PictureBaseResultMap" type="com.xcgn.marry.business.model.business.BusinessWrongPicture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectCardList" resultMap="CardListBaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from business_card_list order by sort
+  </select>
+
+  <select id="selectCardListByCardIds" resultMap="CardListBaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from business_card_list where id not in
+      <foreach item="item" index="index" collection="list" open="("
+               separator="," close=")">#{item}
+      </foreach>
+     order by sort
+  </select>
+  <select id="selectPicture" resultMap="PictureBaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from business_wrong_picture
+    where card_id = #{id,jdbcType=INTEGER}
+  </select>
+
 </mapper>

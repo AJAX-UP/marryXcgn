@@ -78,4 +78,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectRecordCount" resultMap="BaseResultMap"  parameterType="java.lang.Integer" >
+    select
+    *
+    from business_card_record
+    where user_id = #{userId,jdbcType=INTEGER}
+    and create_date=date_format(NOW(), '%Y%m%d')
+  </select>
+
 </mapper>
